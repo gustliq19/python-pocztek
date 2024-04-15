@@ -1,5 +1,6 @@
 import random
 
+
 class Product:
     def __init__(self, name, category_name, price):
         self.name = name
@@ -58,7 +59,7 @@ def print_orders(orders):
 
 
 def random_float():
-    return random.randint(1,6) + random.randint(0,99)/100
+    return random.randint(1, 6) + random.randint(0, 99)/100
 
 
 def generate_products(orders_amount):
