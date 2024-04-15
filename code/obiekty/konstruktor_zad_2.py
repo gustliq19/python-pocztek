@@ -1,3 +1,5 @@
+import random
+
 class Product:
     def __init__(self, name, category_name, price):
         self.name = name
@@ -55,20 +57,22 @@ def print_orders(orders):
         print()
 
 
+def random_float():
+    return random.randint(1,6) + random.randint(0,99)/100
+
+
+def generate_products(orders_amount):
+    products = []
+    for index, product in enumerate(range(orders_amount)):
+        products.append(Product(f"Produkt-{index+1}", f"kategoria-{index+1}", random_float()))
+    return products
+
+
 if __name__ == "__main__":
 
-    order_1 = Order("Tomasz", "Morawski", [
-                                        Product("jabłko", "owoc", 2.8),
-                                        Product("gruszka", "owoc", 1.38),
-                                        Product("jabłko", "owoc", 3.21)])
-    order_2 = Order("Jan", "Kowalski", [
-                                        Product("marchew", "warzywo", 1.31),
-                                        Product("gruszka", "owoc", 1.38)])
-    order_3 = Order("Piotr", "Górski", [
-                                        Product("jabłko", "owoc", 2.8),
-                                        Product("zamniak", "warzywo", 2.41),
-                                        Product("ananas", "owoc", 5.79),
-                                        Product("arbuz", "owoc", 6.70)])
+    order_1 = Order("Tomasz", "Morawski", generate_products(3))
+    order_2 = Order("Jan", "Kowalski", generate_products(5))
+    order_3 = Order("Piotr", "Górski", generate_products(6))
     order_list = [order_1, order_2, order_3]
 
     print("Lista zamówień:\n\n")
