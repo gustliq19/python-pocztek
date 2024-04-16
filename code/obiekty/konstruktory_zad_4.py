@@ -1,4 +1,4 @@
-from store.Order import Order, print_orders
+from store.Order import Order
 from store.Product import generate_products
 
 if __name__ == "__main__":
@@ -9,4 +9,5 @@ if __name__ == "__main__":
     order_list = [order_1, order_2, order_3]
 
     print("Lista zamówień:\n\n")
-    print_orders(order_list)
+    for order in order_list:
+        order.print_order()

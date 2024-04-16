@@ -7,12 +7,11 @@ class Product:
         self.category_name = category_name
         self.price = price
 
-
-def print_product(product):
-    print(f"Nazwa: {product.name}")
-    print(f"Kategoria: {product.category_name}")
-    print(f"Cena: {product.price:.2f} zł")
-    print("-----")
+    def print_product(self):
+        print(f"Nazwa: {self.name}")
+        print(f"Kategoria: {self.category_name}")
+        print(f"Cena: {self.price:.2f} zł")
+        print("-----")
 
 
 def random_float():
