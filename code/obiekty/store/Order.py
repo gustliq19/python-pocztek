@@ -26,6 +26,9 @@ class Order:
 
         return to_print
 
+    def __len__(self):
+        return len(self.order_elements)
+
     def calculate_total_order_value(self):
         for order_element in self.order_elements:
             self.total_price += order_element.calculate_value()
