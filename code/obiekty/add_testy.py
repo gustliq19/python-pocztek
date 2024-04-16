@@ -19,3 +19,6 @@ potato.print()
 added_apple = apple + potato
 print("apple + 4: ", end="")
 added_apple.print()
+
+print(repr(apple))
+print(repr(potato))

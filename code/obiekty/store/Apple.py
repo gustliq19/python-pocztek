@@ -13,3 +13,6 @@ class Apple:
     def __add__(self, other):
         return Apple(self.species_name, self.size, self.kg_price + other.kg_price)
 
+    def __repr__(self):
+        return f"<{str(self.__class__)[1:-1]}, species_name='{self.species_name}', size='{self.size}', kg_price={self.kg_price}>"
+

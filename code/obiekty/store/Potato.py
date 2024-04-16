@@ -9,3 +9,6 @@ class Potato:
 
     def print(self):
         print(f"Gatunek: {self.species_name} | Rozmiar: {self.size} | Cena za kg: {self.kg_price}")
+
+    def __repr__(self):
+        return f"<{str(self.__class__)[1:-1]}, species_name='{self.species_name}', size='{self.size}', kg_price={self.kg_price}>"
