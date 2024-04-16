@@ -12,14 +12,14 @@ class Order:
         if order_elements is None:
             order_elements = []
 
-        self.order_elements = order_elements
-        self.calculate_total_order_value()
+        self._order_elements = order_elements
+        self._calculate_total_order_value()
 
     def __str__(self):
         to_print = ""
         to_print += f"Zamawiający: {self.orderer_first_name} {self.orderer_last_name}\n"
         to_print += f"Elementy zamówienia:\n"
-        for order_element in self.order_elements:
+        for order_element in self._order_elements:
             to_print += str(order_element)
 
         to_print += f"Wartość całkowita: {self.total_price:.2f} zł\n"
@@ -27,21 +27,26 @@ class Order:
         return to_print
 
     def __len__(self):
-        return len(self.order_elements)
+        return len(self._order_elements)
 
     def __eq__(self, other):
         if self.__class__ != other.__class__:
             return NotImplemented
         if self.orderer_first_name != other.orderer_first_name or self.orderer_last_name != other.orderer_last_name or len(self) != len(other):
             return False
-        for order_element in self.order_elements:
-            if order_element not in other.order_elements:
+        for order_element in self._order_elements:
+            if order_element not in other._order_elements:
                 return False
         return True
 
-    def calculate_total_order_value(self):
-        for order_element in self.order_elements:
+    def _calculate_total_order_value(self):
+        for order_element in self._order_elements:
             self.total_price += order_element.calculate_value()
+
+    def add_product_to_order(self, new_product, product_amount):
+        new_element = OrderElement(new_product, product_amount)
+        self._order_elements.append(new_element)
+        self._calculate_total_order_value()
 
 
 def random_float():
