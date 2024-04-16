@@ -16,6 +16,6 @@ class Order:
         print(f"Zamawiający: {self.orderer_first_name} {self.orderer_last_name}")
         print(f"Produkty:")
         for product in self.products:
-            product.print_product()
+            product.print()
 
         print(f"Cena całkowita: {self.total_price:.2f} zł")
