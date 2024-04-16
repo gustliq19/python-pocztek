@@ -9,3 +9,7 @@ class Apple:
 
     def print(self):
         print(f"Gatunek: {self.species_name} | Rozmiar: {self.size} | Cena za kg: {self.kg_price}")
+
+    def __add__(self, other):
+        return Apple(self.species_name, self.size, self.kg_price + other.kg_price)
+
