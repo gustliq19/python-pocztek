@@ -11,8 +11,7 @@ if __name__ == "__main__":
 
     print("Lista zamówień:\n")
     for order in order_list:
-        order.print_order()
-        print()
+        print(order)
 
     red_apple = Apple("champion", "duże", 2.18)
     old_potato = Potato("na frytki", "długi", 1.35)

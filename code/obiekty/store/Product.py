@@ -4,7 +4,11 @@ class Product:
         self.category_name = category_name
         self.price = price
 
-    def print_product_info(self):
-        print(f"Nazwa: {self.name}")
-        print(f"Kategoria: {self.category_name}")
-        print(f"Cena: {self.price:.2f} zł")
+    def __str__(self):
+        to_print = ""
+        to_print += f"Nazwa: {self.name}\n"
+        to_print += f"Kategoria: {self.category_name}\n"
+        to_print += f"Cena: {self.price:.2f} zł\n"
+
+        return to_print
+

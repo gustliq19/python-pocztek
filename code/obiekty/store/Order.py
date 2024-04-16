@@ -15,13 +15,16 @@ class Order:
         self.order_elements = order_elements
         self.calculate_total_order_value()
 
-    def print_order(self):
-        print(f"Zamawiający: {self.orderer_first_name} {self.orderer_last_name}")
-        print(f"Elementy zamówienia:")
+    def __str__(self):
+        to_print = ""
+        to_print += f"Zamawiający: {self.orderer_first_name} {self.orderer_last_name}\n"
+        to_print += f"Elementy zamówienia:\n"
         for order_element in self.order_elements:
-            order_element.print_info()
+            to_print += str(order_element)
 
-        print(f"Wartość całkowita: {self.total_price:.2f} zł")
+        to_print += f"Wartość całkowita: {self.total_price:.2f} zł\n"
+
+        return to_print
 
     def calculate_total_order_value(self):
         for order_element in self.order_elements:
