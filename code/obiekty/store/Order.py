@@ -4,6 +4,9 @@ from .OrderElement import OrderElement
 
 
 class Order:
+
+    MAX_ORDER_ELEMENTS = 4
+
     def __init__(self, orderer_first_name, orderer_last_name, order_elements=None):
         self.orderer_last_name = orderer_last_name
         self.orderer_first_name = orderer_first_name
@@ -11,6 +14,12 @@ class Order:
 
         if order_elements is None:
             order_elements = []
+        elif len(order_elements) > Order.MAX_ORDER_ELEMENTS:
+            print(f"Zamówienie {self.orderer_first_name.upper()} {self.orderer_last_name.upper()} --> ", end="")
+            print(f"Przekroczono maksymalną liczbę elementów zamówienia. ", end="")
+            print(f"Dodano {Order.MAX_ORDER_ELEMENTS} pierwszych elementów.")
+
+            order_elements = order_elements[:Order.MAX_ORDER_ELEMENTS]
 
         self._order_elements = order_elements
         self._calculate_total_order_value()
@@ -42,22 +51,27 @@ class Order:
         return True
 
     def _calculate_total_order_value(self):
+        self.total_price = 0
         for order_element in self._order_elements:
             self.total_price += order_element.calculate_value()
 
     def add_product_to_order(self, new_product, product_amount):
-        new_element = OrderElement(new_product, product_amount)
-        self._order_elements.append(new_element)
-        self._calculate_total_order_value()
+        if len(self._order_elements) < Order.MAX_ORDER_ELEMENTS:
+            new_element = OrderElement(new_product, product_amount)
+            self._order_elements.append(new_element)
+            self._calculate_total_order_value()
+            print(f"DODANO ELEMENT:\n{new_element}")
+        else:
+            print("Nie można dodać kolejnego elementu. Osiągnięto maksymalną liczbę elementów zamówienia.")
 
+    @classmethod
+    def _random_float(cls):
+        return random.randint(1, 6) + random.randint(0, 99)/100
 
-def random_float():
-    return random.randint(1, 6) + random.randint(0, 99)/100
-
-
-def generate_order_elements(elements_amount):
-    random_order_elements = []
-    for index, product in enumerate(range(elements_amount)):
-        new_product = Product(f"Produkt-{index+1}", f"kategoria-{index+1}", price=random_float())
-        random_order_elements.append(OrderElement(new_product, amount=random_float()))
-    return random_order_elements
+    @classmethod
+    def generate_order_elements(cls, elements_amount):
+        random_order_elements = []
+        for index, product in enumerate(range(elements_amount)):
+            new_product = Product(f"Produkt-{index+1}", f"kategoria-{index+1}", price=cls._random_float())
+            random_order_elements.append(OrderElement(new_product, amount=cls._random_float()))
+        return random_order_elements
