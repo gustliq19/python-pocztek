@@ -17,9 +17,6 @@ class OrderElement:
         if self.__class__ != other.__class__:
             return NotImplemented
         return self.amount == other.amount and self.product == other.product
-        # if self.product != other.product or self.amount != other.amount:
-        #     return False
-        # return True
 
     def calculate_value(self):
         return self.product.price * self.amount

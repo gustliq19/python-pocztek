@@ -32,7 +32,9 @@ class Order:
     def __eq__(self, other):
         if self.__class__ != other.__class__:
             return NotImplemented
-        if self.orderer_first_name != other.orderer_first_name or self.orderer_last_name != other.orderer_last_name or len(self) != len(other):
+        if self.orderer_first_name != other.orderer_first_name or self.orderer_last_name != other.orderer_last_name:
+            return False
+        if len(self) != len(other):
             return False
         for order_element in self._order_elements:
             if order_element not in other._order_elements:
