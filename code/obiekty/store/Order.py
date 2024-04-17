@@ -1,6 +1,7 @@
 import random
 from .Product import Product
 from .OrderElement import OrderElement
+from .TaxCalculator import TaxCalculator
 
 
 class Order:
@@ -31,7 +32,7 @@ class Order:
         for order_element in self._order_elements:
             to_print += str(order_element)
 
-        to_print += f"Wartość całkowita: {self.total_price:.2f} zł\n"
+        to_print += f"Wartość całkowita: {self.total_price:.2f} zł BRUTTO\n"
 
         return to_print
 
@@ -53,7 +54,8 @@ class Order:
     def _calculate_total_order_value(self):
         self.total_price = 0
         for order_element in self._order_elements:
-            self.total_price += order_element.calculate_value()
+            # self.total_price += order_element.calculate_value()
+            self.total_price += order_element.calculate_value() + TaxCalculator.calculate_tax_for_element(order_element)
 
     def add_product_to_order(self, new_product, product_amount):
         if len(self._order_elements) < Order.MAX_ORDER_ELEMENTS:

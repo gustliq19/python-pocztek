@@ -1,3 +1,6 @@
+from .TaxCalculator import TaxCalculator
+
+
 class OrderElement:
     def __init__(self, product, amount):
         self.amount = amount
@@ -8,7 +11,7 @@ class OrderElement:
         to_print += f"Produkt:\n"
         to_print += str(self.product)
         to_print += f"Ilość: {self.amount:.2f}\n"
-        to_print += f"Wartość: {self.calculate_value():.2f} zł\n"
+        to_print += f"Wartość: {self.calculate_value():.2f} zł NETTO | {(self.calculate_value() + TaxCalculator.calculate_tax_for_element(self)):.2f} zł BRUTTO\n"
         to_print += "-----\n"
 
         return to_print
