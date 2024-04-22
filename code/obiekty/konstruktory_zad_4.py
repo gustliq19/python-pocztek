@@ -6,10 +6,6 @@ from store.Product import Product
 from store.discount_policy import christmas_discount, loyal_customer_discount
 
 
-def get_total_price_of(order):
-    return order.total_price
-
-
 def run():
     # order_1 = Order("Tomasz", "Morawski", Order.generate_order_elements(3), discount=Order.regular_customer_discount)
     # order_2 = Order("Jan", "Kowalski", Order.generate_order_elements(5))
@@ -48,11 +44,11 @@ def run():
 
     # sortowanie listy zamówień
 
-    # order_list.sort(key=get_total_price_of)
-    # print("=" * 10)
-    #
-    # for order in order_list:
-    #     print(order)
+    order_list.sort(key=lambda order: order.total_price)
+    print("=" * 30)
+
+    for order in order_list:
+        print(order)
 
     red_apple = Apple("champion", "duże", 2.18)
     old_potato = Potato("na frytki", "długi", 1.35)
