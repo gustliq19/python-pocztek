@@ -30,7 +30,7 @@ class Order:
         to_print += f"Zamawiający: {self.orderer_first_name} {self.orderer_last_name}\n"
         to_print += f"Elementy zamówienia:\n"
         for order_element in self._order_elements:
-            to_print += str(order_element)
+            to_print += "\t" + str(order_element)
 
         to_print += f"Wartość całkowita: {self.total_price:.2f} zł BRUTTO\n"
 
