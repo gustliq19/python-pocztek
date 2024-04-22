@@ -5,13 +5,14 @@ class OrderElement:
     def __init__(self, product, amount):
         self.amount = amount
         self.product = product
+        self.value = self.calculate_value()
 
     def __str__(self):
         to_print = ""
         # to_print += f"Produkt:\n"
         to_print += str(self.product)
         to_print += f" | Ilość: {self.amount:.2f} | "
-        to_print += f"Wartość: {self.calculate_value():.2f} zł NETTO ; {(self.calculate_value() + TaxCalculator.calculate_tax_for_element(self)):.2f} zł BRUTTO\n"
+        to_print += f"Wartość: {self.value:.2f} zł NETTO ; {(self.value + TaxCalculator.calculate_tax_for_element(self)):.2f} zł BRUTTO\n"
         # to_print += "-----\n"
 
         return to_print

@@ -2,13 +2,14 @@ import random
 from .Product import Product
 from .OrderElement import OrderElement
 from .TaxCalculator import TaxCalculator
+from .discount_policy import default_discount_policy
 
 
 class Order:
 
     MAX_ORDER_ELEMENTS = 4
 
-    def __init__(self, orderer_first_name, orderer_last_name, order_elements=None):
+    def __init__(self, orderer_first_name, orderer_last_name, order_elements=None, discount=None):
         self.orderer_last_name = orderer_last_name
         self.orderer_first_name = orderer_first_name
         self.total_price = 0
@@ -22,8 +23,13 @@ class Order:
 
             order_elements = order_elements[:Order.MAX_ORDER_ELEMENTS]
 
+        if discount is None:
+            discount = default_discount_policy
+
+        self.discount_policy = discount
+        print(self.discount_policy)
         self._order_elements = order_elements
-        self._calculate_total_order_value()
+        self.total_price = self._calculate_total_order_value()
 
     def __str__(self):
         to_print = ""
@@ -52,10 +58,10 @@ class Order:
         return True
 
     def _calculate_total_order_value(self):
-        self.total_price = 0
+        total_price = 0
         for order_element in self._order_elements:
-            # self.total_price += order_element.calculate_value()
-            self.total_price += order_element.calculate_value() + TaxCalculator.calculate_tax_for_element(order_element)
+            total_price += order_element.value + TaxCalculator.calculate_tax_for_element(order_element)
+        return self.discount_policy(total_price)
 
     def add_product_to_order(self, new_product, product_amount):
         if len(self._order_elements) < Order.MAX_ORDER_ELEMENTS:
@@ -66,14 +72,14 @@ class Order:
         else:
             print("Nie można dodać kolejnego elementu. Osiągnięto maksymalną liczbę elementów zamówienia.")
 
-    @classmethod
-    def _random_float(cls):
-        return random.randint(1, 6) + random.randint(0, 99)/100
+    @staticmethod
+    def _random_float(a, b):
+        return random.randint(a, b) + random.randint(0, 99)/100
 
     @classmethod
     def generate_order_elements(cls, elements_amount):
         random_order_elements = []
         for index, product in enumerate(range(elements_amount)):
-            new_product = Product(f"Produkt-{index+1}", f"kategoria-{index+1}", price=cls._random_float())
-            random_order_elements.append(OrderElement(new_product, amount=cls._random_float()))
+            new_product = Product(f"Produkt-{index+1}", f"kategoria-{index+1}", price=cls._random_float(1, 6))
+            random_order_elements.append(OrderElement(new_product, amount=cls._random_float(4, 7)))
         return random_order_elements
