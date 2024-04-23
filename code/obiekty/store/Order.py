@@ -1,5 +1,3 @@
-import random
-from .Product import Product
 from .OrderElement import OrderElement
 from .TaxCalculator import TaxCalculator
 from .discount_policy import default_discount_policy
@@ -27,7 +25,7 @@ class Order:
             discount = default_discount_policy
 
         self.discount_policy = discount
-        print(self.discount_policy)
+
         self._order_elements = order_elements
         self.total_price = self._calculate_total_order_value()
 
@@ -71,15 +69,3 @@ class Order:
             print(f"DODANO ELEMENT:\n{new_element}")
         else:
             print("Nie można dodać kolejnego elementu. Osiągnięto maksymalną liczbę elementów zamówienia.")
-
-    @staticmethod
-    def _random_float(a, b):
-        return random.randint(a, b) + random.randint(0, 99)/100
-
-    @classmethod
-    def generate_order_elements(cls, elements_amount):
-        random_order_elements = []
-        for index, product in enumerate(range(elements_amount)):
-            new_product = Product(f"Produkt-{index+1}", f"kategoria-{index+1}", price=cls._random_float(1, 6))
-            random_order_elements.append(OrderElement(new_product, amount=cls._random_float(4, 7)))
-        return random_order_elements

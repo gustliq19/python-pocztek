@@ -4,15 +4,16 @@ from store.Apple import Apple
 from store.Potato import Potato
 from store.Product import Product
 from store.discount_policy import christmas_discount, loyal_customer_discount
+from store import data_generator
 
 
 def run():
-    # order_1 = Order("Tomasz", "Morawski", Order.generate_order_elements(3), discount=Order.regular_customer_discount)
-    # order_2 = Order("Jan", "Kowalski", Order.generate_order_elements(5))
-    # order_3 = Order("Piotr", "Górski", Order.generate_order_elements(6))
-    # order_4 = Order("Wiesław", "Zszywka", Order.generate_order_elements(2))
-    # order_5 = Order("Antoni", "Traczyk", Order.generate_order_elements(4))
-    # order_list = [order_1, order_2, order_3, order_4, order_5]
+    order_1 = Order("Tomasz", "Morawski", data_generator.generate_order_elements(3), discount=loyal_customer_discount)
+    order_2 = Order("Jan", "Kowalski", data_generator.generate_order_elements(5))
+    order_3 = Order("Piotr", "Górski", data_generator.generate_order_elements(6))
+    order_4 = Order("Wiesław", "Zszywka", data_generator.generate_order_elements(2))
+    order_5 = Order("Antoni", "Traczyk", data_generator.generate_order_elements(4))
+    order_list = [order_1, order_2, order_3, order_4, order_5]
 
     gruszka = Product("gruszka", "Owoce i warzywa", 3.14)
     banan = Product("banan", "Owoce i warzywa", 2.06)
