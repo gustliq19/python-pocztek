@@ -68,14 +68,12 @@ class Order:
 
     @order_elements.setter
     def order_elements(self, value):
-        new_order_elements_list = []
         if len(value) > Order.MAX_ORDER_ELEMENTS:
-            new_order_elements_list = value[:Order.MAX_ORDER_ELEMENTS]
+            self.order_elements = value[:Order.MAX_ORDER_ELEMENTS]
             print("Wprowadzono zbyt dużą liczbę elementów do zamówienia.", end="")
             print(f"Dodano {Order.MAX_ORDER_ELEMENTS} pierwszych elementów.")
         else:
-            new_order_elements_list = value
-        self._order_elements = new_order_elements_list
+            self.order_elements = value
 
     @property
     def total_price(self):
