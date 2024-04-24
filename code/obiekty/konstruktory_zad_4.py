@@ -21,6 +21,23 @@ def run():
     cukierki = Product("cukierki", "Słodycze", 5.19)
     ciastka = Product("ciastka", "Słodycze", 4.15)
 
+    order_0 = Order("Albert", "Einstain", discount=loyal_customer_discount)
+    print(order_0)
+    order_0.order_elements = [
+        OrderElement(gruszka, 2.7),
+        OrderElement(banan, 5),
+        OrderElement(cukierki, 1.56),
+        OrderElement(chleb, 3),
+        OrderElement(ciastka, 2)
+    ]
+    print(order_0)
+    order_0.order_elements = [
+        OrderElement(ciastka, 1.2),
+        OrderElement(chleb, 2),
+        OrderElement(cukierki, 20)
+    ]
+    print(order_0)
+
     order_1 = Order("Tomasz", "Morawski", [
         OrderElement(gruszka, 2.7),
         OrderElement(banan, 5),
@@ -50,7 +67,6 @@ def run():
 
     for order in order_list:
         print(order)
-
 
     # wypisanie wszystkich elementów danego zamowienia
     print("=" * 40)
