@@ -69,3 +69,7 @@ class Order:
             print(f"DODANO ELEMENT:\n{new_element}")
         else:
             print("Nie można dodać kolejnego elementu. Osiągnięto maksymalną liczbę elementów zamówienia.")
+
+    @property
+    def order_elements(self):
+        return self._order_elements

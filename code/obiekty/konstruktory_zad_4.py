@@ -8,12 +8,12 @@ from store import data_generator
 
 
 def run():
-    order_1 = Order("Tomasz", "Morawski", data_generator.generate_order_elements(3), discount=loyal_customer_discount)
-    order_2 = Order("Jan", "Kowalski", data_generator.generate_order_elements(5))
-    order_3 = Order("Piotr", "Górski", data_generator.generate_order_elements(6))
-    order_4 = Order("Wiesław", "Zszywka", data_generator.generate_order_elements(2))
-    order_5 = Order("Antoni", "Traczyk", data_generator.generate_order_elements(4))
-    order_list = [order_1, order_2, order_3, order_4, order_5]
+    # order_1 = Order("Tomasz", "Morawski", data_generator.generate_order_elements(3), discount=loyal_customer_discount)
+    # order_2 = Order("Jan", "Kowalski", data_generator.generate_order_elements(5))
+    # order_3 = Order("Piotr", "Górski", data_generator.generate_order_elements(6))
+    # order_4 = Order("Wiesław", "Zszywka", data_generator.generate_order_elements(2))
+    # order_5 = Order("Antoni", "Traczyk", data_generator.generate_order_elements(4))
+    # order_list = [order_1, order_2, order_3, order_4, order_5]
 
     gruszka = Product("gruszka", "Owoce i warzywa", 3.14)
     banan = Product("banan", "Owoce i warzywa", 2.06)
@@ -50,6 +50,13 @@ def run():
 
     for order in order_list:
         print(order)
+
+
+    # wypisanie wszystkich elementów danego zamowienia
+    print("=" * 40)
+    for order_element in order_2.order_elements:
+        print(order_element)
+    print("=" * 40)
 
     red_apple = Apple("champion", "duże", 2.18)
     old_potato = Potato("na frytki", "długi", 1.35)
