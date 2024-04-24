@@ -80,9 +80,9 @@ def run():
     apple_kg_amount = 2.5
     potato_kg_amount = 3.74
 
-    # print()
-    # order_1.add_product_to_order(ciastka, 1)
-    # print(order_1)
+    print()
+    order_1.add_product_to_order(ciastka, 1)
+    print(order_1)
 
     # red_apple.print()
     # old_potato.print()

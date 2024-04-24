@@ -10,7 +10,6 @@ class Order:
     def __init__(self, orderer_first_name, orderer_last_name, order_elements=None, discount=None):
         self.orderer_last_name = orderer_last_name
         self.orderer_first_name = orderer_first_name
-        self.total_price = 0
 
         if order_elements is None:
             order_elements = []
@@ -27,7 +26,6 @@ class Order:
         self.discount_policy = discount
 
         self._order_elements = order_elements
-        self.total_price = self._calculate_total_order_value()
 
     def __str__(self):
         to_print = ""
@@ -55,17 +53,11 @@ class Order:
                 return False
         return True
 
-    def _calculate_total_order_value(self):
-        total_price = 0
-        for order_element in self._order_elements:
-            total_price += order_element.value + TaxCalculator.calculate_tax_for_element(order_element)
-        return self.discount_policy(total_price)
-
     def add_product_to_order(self, new_product, product_amount):
         if len(self._order_elements) < Order.MAX_ORDER_ELEMENTS:
             new_element = OrderElement(new_product, product_amount)
             self._order_elements.append(new_element)
-            self._calculate_total_order_value()
+            # self._calculate_total_order_value()
             print(f"DODANO ELEMENT:\n{new_element}")
         else:
             print("Nie można dodać kolejnego elementu. Osiągnięto maksymalną liczbę elementów zamówienia.")
@@ -84,4 +76,10 @@ class Order:
         else:
             new_order_elements_list = value
         self._order_elements = new_order_elements_list
-        self.total_price = self._calculate_total_order_value()
+
+    @property
+    def total_price(self):
+        total_price = 0
+        for order_element in self._order_elements:
+            total_price += order_element.value + TaxCalculator.calculate_tax_for_element(order_element)
+        return self.discount_policy(total_price)
