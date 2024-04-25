@@ -1,5 +1,4 @@
 from .Order import Order
-from .TaxCalculator import TaxCalculator
 
 
 class ExpressOrder(Order):
@@ -12,11 +11,7 @@ class ExpressOrder(Order):
 
     @property
     def total_price(self):
-        total_price = 0
-        for order_element in self._order_elements:
-            total_price += order_element.value + TaxCalculator.calculate_tax_for_element(order_element)
-        return self.discount_policy(total_price) + ExpressOrder.EXPRESS_ORDER_FEE
-        # return super().total_price + ExpressOrder.EXPRESS_ORDER_FEE
+        return super().total_price + ExpressOrder.EXPRESS_ORDER_FEE
 
     def __str__(self):
         to_print = ""

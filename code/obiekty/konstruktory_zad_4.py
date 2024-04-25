@@ -5,7 +5,7 @@ from store.Apple import Apple
 from store.Potato import Potato
 from store.Product import Product
 from store.Product_expire import ProductExpire
-from store.discount_policy import christmas_discount, loyal_customer_discount
+from store.discount_policy import PercentageDiscount, AbsoluteDiscount
 from store import data_generator
 
 
@@ -23,14 +23,13 @@ def run():
     cukierki = Product("cukierki", "Słodycze", 5.19)
     ciastka = Product("ciastka", "Słodycze", 4.15)
 
-    order_0 = ExpressOrder("28.07.2024", "Albert", "Einstain", discount=loyal_customer_discount)
+    order_0 = ExpressOrder("28.07.2024", "Albert", "Einstain", discount=PercentageDiscount(27))
     print(order_0)
     order_0.order_elements = [
         OrderElement(gruszka, 2.7),
         OrderElement(banan, 5),
         OrderElement(cukierki, 1.56),
-        OrderElement(chleb, 3),
-        OrderElement(ciastka, 2)
+        OrderElement(chleb, 3)
     ]
     print(order_0)
     # order_0.order_elements = [
@@ -44,13 +43,13 @@ def run():
         OrderElement(gruszka, 2.7),
         OrderElement(banan, 5),
         OrderElement(cukierki, 1.56)
-    ], discount=loyal_customer_discount)
+    ], discount=PercentageDiscount(10))
 
     order_2 = Order("Jan", "Kowalski", [
         OrderElement(ciastka, 1.2),
         OrderElement(chleb, 2),
         OrderElement(cukierki, 20)
-    ], discount=christmas_discount)
+    ], discount=AbsoluteDiscount(30))
 
     order_3 = Order("Piotr", "Górski", [
         OrderElement(banan, 5),

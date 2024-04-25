@@ -1,6 +1,6 @@
 from .OrderElement import OrderElement
 from .TaxCalculator import TaxCalculator
-from .discount_policy import default_discount_policy
+from .discount_policy import DiscountPolicy
 
 
 class Order:
@@ -21,7 +21,7 @@ class Order:
             order_elements = order_elements[:Order.MAX_ORDER_ELEMENTS]
 
         if discount is None:
-            discount = default_discount_policy
+            discount = DiscountPolicy()
 
         self.discount_policy = discount
 
@@ -80,4 +80,4 @@ class Order:
         total_price = 0
         for order_element in self._order_elements:
             total_price += order_element.value + TaxCalculator.calculate_tax_for_element(order_element)
-        return self.discount_policy(total_price)
+        return self.discount_policy.apply_discount(total_price)
