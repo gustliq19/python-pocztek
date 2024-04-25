@@ -1,4 +1,5 @@
 from store.Order import Order
+from store.ExpressOrder import ExpressOrder
 from store.OrderElement import OrderElement
 from store.Apple import Apple
 from store.Potato import Potato
@@ -22,7 +23,7 @@ def run():
     cukierki = Product("cukierki", "Słodycze", 5.19)
     ciastka = Product("ciastka", "Słodycze", 4.15)
 
-    order_0 = Order("Albert", "Einstain", discount=loyal_customer_discount)
+    order_0 = ExpressOrder("28.07.2024", "Albert", "Einstain", discount=loyal_customer_discount)
     print(order_0)
     order_0.order_elements = [
         OrderElement(gruszka, 2.7),
@@ -32,12 +33,12 @@ def run():
         OrderElement(ciastka, 2)
     ]
     print(order_0)
-    order_0.order_elements = [
-        OrderElement(ciastka, 1.2),
-        OrderElement(chleb, 2),
-        OrderElement(cukierki, 20)
-    ]
-    print(order_0)
+    # order_0.order_elements = [
+    #     OrderElement(ciastka, 1.2),
+    #     OrderElement(chleb, 2),
+    #     OrderElement(cukierki, 20)
+    # ]
+    # print(order_0)
 
     order_1 = Order("Tomasz", "Morawski", [
         OrderElement(gruszka, 2.7),
