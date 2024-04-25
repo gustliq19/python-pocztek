@@ -3,6 +3,7 @@ from store.OrderElement import OrderElement
 from store.Apple import Apple
 from store.Potato import Potato
 from store.Product import Product
+from store.Product_expire import ProductExpire
 from store.discount_policy import christmas_discount, loyal_customer_discount
 from store import data_generator
 
@@ -88,6 +89,10 @@ def run():
     # old_potato.print()
     # print(f"Cena {apple_kg_amount} kg jabłek wynosi: {red_apple.calculate_price(apple_kg_amount):.2f} zł")
     # print(f"Cena {potato_kg_amount} kg jabłek wynosi: {red_apple.calculate_price(potato_kg_amount):.2f} zł")
+
+    maliny = ProductExpire("Maliny", "Owoce i warzywa", 6.23, 2020, 2)
+    print(maliny)
+    print("Czy przeterminowane?: ", maliny.does_expire(2021))
 
 
 if __name__ == "__main__":
