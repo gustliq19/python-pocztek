@@ -10,7 +10,8 @@ MAX_PRODUCT_AMOUNT = 7
 
 
 def random_float(a, b):
-    return random.randint(a, b) + random.randint(0, 99) / 100
+    return round(random.uniform(a, b), ndigits=2)
+    # return random.randint(a, b) + random.randint(0, 99) / 100
 
 
 def generate_order_elements(elements_amount=None):

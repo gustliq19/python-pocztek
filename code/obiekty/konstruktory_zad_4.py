@@ -10,7 +10,7 @@ from store import data_generator
 
 
 def run():
-    # order_1 = Order("Tomasz", "Morawski", data_generator.generate_order_elements(3), discount=loyal_customer_discount)
+    # order_1 = Order("Tomasz", "Morawski", data_generator.generate_order_elements(3), discount=PercentageDiscount(12))
     # order_2 = Order("Jan", "Kowalski", data_generator.generate_order_elements(5))
     # order_3 = Order("Piotr", "Górski", data_generator.generate_order_elements(6))
     # order_4 = Order("Wiesław", "Zszywka", data_generator.generate_order_elements(2))
